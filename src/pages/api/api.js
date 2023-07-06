@@ -1,18 +1,17 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-
-// export default function handler(req, res) {
-//   res.status(200).json({ name: "John Doe" });
-// }
-// 'use strict';
+require("dotenv").config();
 
 let date = new Date();
 console.log(date.getTime());
+
+const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
+const ts = process.env.NEXT_PUBLIC_TS;
+const hashVal = process.env.NEXT_PUBLIC_HASH;
 
 const searchByCharacter = async (characterName) => {
   const response = await fetch(
     `https://gateway.marvel.com/v1/public/characters?name=${encodeURIComponent(
       characterName
-    )}&ts=${ts}&apikey=${MARVEL_API_KEY}&hash=${hashVal}`
+    )}&ts=${ts}&apikey=${API_KEY}&hash=${hashVal}`
   );
 
   if (!response.ok) {
@@ -27,7 +26,7 @@ const searchByCharacter = async (characterName) => {
 
   const characterId = data.results[0].id;
 
-  const apiUrl = `http://gateway.marvel.com/v1/public/characters/${characterId}/comics?ts=${ts}&apikey=${MARVEL_API_KEY}&hash=${hashVal}`;
+  const apiUrl = `http://gateway.marvel.com/v1/public/characters/${characterId}/comics?ts=${ts}&apikey=${API_KEY}&hash=${hashVal}`;
 
   return fetch(apiUrl);
 };

@@ -12,13 +12,14 @@ const style = {
   title: `text-3xl mb-6 `,
   input: `rounded-lg p-4 mb-4 text-black`,
   button: `p-2 m-2 border rounded-lg bg-red-600`,
-  comicGrid: `flex flex-wrap`,
+  comicGrid: `p-4 m-4 flex flex-wrap justify-center`,
+  comicImageDiv: `border p-2 m-2 text-center rounded-lg bg-red-800/75`,
+  comicImage: `m-4 p-4 border rounded-lg scale-75 bg-slate-800/75 hover:bg-slate-800`,
 };
 
 export default function Home() {
   const [searchedCharacter, setSearchedCharacter] = useState([]);
   const [searchInput, setSearchInput] = useState("");
-  console.log(searchInput);
 
   // console.log(searchedCharactersId);
 
@@ -52,9 +53,7 @@ export default function Home() {
 
   return (
     <>
-      <main
-        className={`flex min-h-screen flex-col items-center p-24 ${inter.className}`}
-      >
+      <main className={`flex flex-col items-center p-4 ${inter.className}`}>
         <div className={style.formContainer}>
           <h1 className={style.title}>Marvel Query</h1>
           <form onSubmit={handleFormSubmit}>
@@ -74,9 +73,13 @@ export default function Home() {
       <div className={style.comicGrid}>
         {searchedCharacter.map((character) => {
           return (
-            <div key={character.comicId}>
+            <div className={style.comicImageDiv} key={character.comicId}>
               {character.title}
-              <img src={character.image} alt={character.title} />
+              <img
+                className={style.comicImage}
+                src={character.image}
+                alt={character.title}
+              />
             </div>
           );
         })}
