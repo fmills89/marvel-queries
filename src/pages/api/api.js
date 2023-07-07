@@ -6,6 +6,7 @@ console.log(date.getTime());
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 const ts = process.env.NEXT_PUBLIC_TS;
 const hashVal = process.env.NEXT_PUBLIC_HASH;
+const limit = 50;
 
 const searchByCharacter = async (characterName) => {
   const response = await fetch(
@@ -26,7 +27,7 @@ const searchByCharacter = async (characterName) => {
 
   const characterId = data.results[0].id;
 
-  const apiUrl = `http://gateway.marvel.com/v1/public/characters/${characterId}/comics?ts=${ts}&apikey=${API_KEY}&hash=${hashVal}`;
+  const apiUrl = `http://gateway.marvel.com/v1/public/characters/${characterId}/comics?ts=${ts}&apikey=${API_KEY}&hash=${hashVal}&limit=${limit}`;
 
   return fetch(apiUrl);
 };

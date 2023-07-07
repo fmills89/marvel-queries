@@ -12,9 +12,9 @@ const style = {
   title: `text-3xl mb-6 `,
   input: `rounded-lg p-4 mb-4 text-black`,
   button: `p-2 m-2 border rounded-lg bg-red-600`,
-  comicGrid: `p-4 m-4 flex flex-wrap justify-center`,
+  comicGrid: `p-2 m-4 flex flex-wrap justify-center`,
   comicImageDiv: `border p-2 m-2 text-center rounded-lg bg-red-800/75`,
-  comicImage: `m-4 p-4 border rounded-lg scale-75 bg-slate-800/75 hover:bg-slate-800`,
+  comicImage: `border rounded-lg scale-75 bg-slate-800/75 hover:bg-slate-800`,
 };
 
 export default function Home() {
@@ -42,6 +42,7 @@ export default function Home() {
         title: comic.title,
         characters: comic.characters.items,
         image: comic.thumbnail.path + "." + comic.thumbnail.extension,
+        url: comic.urls[0],
       }));
       console.log(comicData);
       setSearchedCharacter(comicData);
@@ -80,6 +81,13 @@ export default function Home() {
                 src={character.image}
                 alt={character.title}
               />
+              <a
+                href={character.url.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Check out details on this comic here!
+              </a>
             </div>
           );
         })}
