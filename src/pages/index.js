@@ -22,6 +22,7 @@ const style = {
 
 export default function Home() {
   const [searchedCharacter, setSearchedCharacter] = useState([]);
+  const [savedComicsIds, setSavedComicsIds] = useState();
   const [searchInput, setSearchInput] = useState("");
 
   // console.log(searchedCharactersId);
@@ -53,6 +54,13 @@ export default function Home() {
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const handleSaveComic = async (comicId) => {
+    const comicToSave = searchedCharacter.find(
+      (comic) => comic.comicId === comicId
+    );
+    console.log(comicToSave);
   };
 
   return (
@@ -94,7 +102,10 @@ export default function Home() {
                     Details
                   </a>
                 </button>
-                <button className={style.comicButton}>
+                <button
+                  onClick={() => handleSaveComic(character.comicId)}
+                  className={style.comicButton}
+                >
                   Save comic to favorites
                 </button>
               </div>
