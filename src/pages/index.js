@@ -9,12 +9,15 @@ const inter = Inter({
 
 const style = {
   formContainer: `border-2 rounded-lg p-20 w-full text-center bg-red-800`,
-  title: `text-3xl mb-6 `,
+  title: `text-3xl mb-6`,
   input: `rounded-lg p-4 mb-4 text-black`,
   button: `p-2 m-2 border rounded-lg bg-red-600`,
   comicGrid: `p-2 m-4 flex flex-wrap justify-center`,
   comicImageDiv: `border p-2 m-2 text-center rounded-lg bg-red-800/75`,
-  comicImage: `border rounded-lg scale-75 bg-slate-800/75 hover:bg-slate-800`,
+  comicTitle: `border-b-4 inline pb-2 border-b-slate-800`,
+  comicImage: `border p-2 rounded-lg scale-75 bg-slate-800/75 hover:bg-slate-800`,
+  comicButton: `border m-2 p-2 rounded-lg bg-slate-800`,
+  comicButtons: `flex flex-col w-full items-center`,
 };
 
 export default function Home() {
@@ -75,19 +78,26 @@ export default function Home() {
         {searchedCharacter.map((character) => {
           return (
             <div className={style.comicImageDiv} key={character.comicId}>
-              {character.title}
+              <div className={style.comicTitle}> {character.title}</div>
               <img
                 className={style.comicImage}
                 src={character.image}
                 alt={character.title}
               />
-              <a
-                href={character.url.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Check out details on this comic here!
-              </a>
+              <div className={style.comicButtons}>
+                <button className={style.comicButton}>
+                  <a
+                    href={character.url.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Details
+                  </a>
+                </button>
+                <button className={style.comicButton}>
+                  Save comic to favorites
+                </button>
+              </div>
             </div>
           );
         })}
