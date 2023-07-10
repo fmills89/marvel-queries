@@ -1,7 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Inter } from "next/font/google";
 
 import searchByCharacter from "./api/api";
+import {
+  getItem,
+  setItem,
+  saveComicIds,
+  getSavedComicIds,
+} from "../utils/localStorage";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -22,10 +28,14 @@ const style = {
 
 export default function Home() {
   const [searchedCharacter, setSearchedCharacter] = useState([]);
-  const [savedComicsIds, setSavedComicsIds] = useState();
+  const [savedComicsIds, setSavedComicsIds] = useState(getSavedComicIds());
   const [searchInput, setSearchInput] = useState("");
 
-  // console.log(searchedCharactersId);
+  // console.log(savedComicsIds);
+
+  useEffect(() => {
+    saveComicIds(savedComicsIds);
+  }, [savedComicsIds]);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -61,6 +71,12 @@ export default function Home() {
       (comic) => comic.comicId === comicId
     );
     console.log(comicToSave);
+
+    try {
+      setSavedComicsIds([...savedComicsIds, comicToSave.comicId]);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
