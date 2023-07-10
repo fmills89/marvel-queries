@@ -14,7 +14,7 @@ const inter = Inter({
 });
 
 const style = {
-  formContainer: `border-2 rounded-lg p-20 w-full text-center bg-red-800`,
+  formContainer: ` rounded-lg p-20 w-full text-center bg-red-800`,
   title: `text-3xl mb-6`,
   input: `rounded-lg p-4 mb-4 text-black`,
   button: `p-2 m-2 border rounded-lg bg-red-600`,
