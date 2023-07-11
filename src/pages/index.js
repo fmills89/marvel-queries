@@ -36,6 +36,7 @@ export default function Home() {
   useEffect(() => {
     saveComicIds(savedComicsIds);
   }, [savedComicsIds]);
+  console.log(savedComicsIds);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -73,7 +74,7 @@ export default function Home() {
     console.log(comicToSave);
 
     try {
-      setSavedComicsIds([...savedComicsIds, comicToSave.comicId]);
+      setSavedComicsIds([...savedComicsIds, comicToSave]);
     } catch (error) {
       console.error(error);
     }

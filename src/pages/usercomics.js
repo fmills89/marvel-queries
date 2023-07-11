@@ -1,3 +1,13 @@
+import { useState, useEffect } from "react";
+import { getSavedComicIds } from "@/utils/localStorage";
+
 export default function UserComics() {
-  return <div>SavedComics</div>;
+  const [comicData, setComicData] = useState([]);
+
+  useEffect(() => {
+    setComicData(getSavedComicIds());
+  }, []);
+
+  console.log(comicData);
+  return <div>{}</div>;
 }
