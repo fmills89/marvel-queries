@@ -14,8 +14,9 @@ const inter = Inter({
 });
 
 const style = {
-  formContainer: ` rounded-lg p-20 w-full text-center bg-red-800`,
+  formContainer: `rounded-lg p-12 w-full text-center bg-red-800`,
   title: `text-3xl mb-6`,
+  userSubmit: `flex flex-col items-center`,
   input: `rounded-lg p-4 mb-4 text-black`,
   button: `p-2 m-2 border rounded-lg bg-red-600`,
   comicGrid: `p-2 m-4 flex flex-wrap justify-center`,
@@ -82,10 +83,10 @@ export default function Home() {
 
   return (
     <>
-      <main className={`flex flex-col items-center p-4 ${inter.className}`}>
+      <main className={`flex flex-col mx-2 items-center ${inter.className}`}>
         <div className={style.formContainer}>
           <h1 className={style.title}>Marvel Query</h1>
-          <form onSubmit={handleFormSubmit}>
+          <form className={style.userSubmit} onSubmit={handleFormSubmit}>
             <input
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
@@ -120,10 +121,17 @@ export default function Home() {
                   </a>
                 </button>
                 <button
+                  disabled={savedComicsIds?.some(
+                    (savedComicId) => savedComicId.comicId === character.comicId
+                  )}
                   onClick={() => handleSaveComic(character.comicId)}
                   className={style.comicButton}
                 >
-                  Save comic to favorites
+                  {savedComicsIds?.some(
+                    (savedComicId) => savedComicId.comicId === character.comicId
+                  )
+                    ? "This comic has been saved already!"
+                    : "Save this comic to favorites!"}
                 </button>
               </div>
             </div>

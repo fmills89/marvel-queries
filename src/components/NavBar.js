@@ -37,10 +37,12 @@ function NavBar() {
           <Link href="/">Marvel Comics Query</Link>
         </div>
         <div className={style.navRight}>
+          <Link href="/" className={style.navButtons}>
+            Search Comics
+          </Link>
           <Link href="/usercomics" className={style.navButtons}>
             Saved Comics
           </Link>
-          <button className={style.navButtons}>Search Comics</button>
           <button className={style.navButtons} onClick={openModal}>
             Login
           </button>
