@@ -9,5 +9,17 @@ export default function UserComics() {
   }, []);
 
   console.log(comicData);
-  return <div>{}</div>;
+
+  return (
+    <div>
+      {comicData.map((comic) => {
+        return (
+          <div key={comic.comicId}>
+            <div>{comic.title}</div>
+            <img src={comic.image} alt={comic.title} />
+          </div>
+        );
+      })}
+    </div>
+  );
 }
