@@ -25,3 +25,24 @@ export const saveComicIds = (comicIdArr) => {
     localStorage.removeItem("saved_comics");
   }
 };
+
+export const removeComicId = (comicId) => {
+  const savedComicIds = localStorage.getItem("saved_comics")
+    ? JSON.parse(localStorage.getItem("saved_comics"))
+    : null;
+
+  if (!savedComicIds) {
+    return;
+  }
+
+  for (let i = 0; i < savedComicIds.length; i++) {
+    console.log(savedComicIds[i].comicId);
+    if (savedComicIds[i].comicId === comicId) {
+      // need to remove comicId from savedComicIds array
+      savedComicIds.splice(i, 1); // Remove 1 element at index i
+      localStorage.setItem("saved_comics", JSON.stringify(savedComicIds));
+      window.location.reload();
+      break;
+    }
+  }
+};

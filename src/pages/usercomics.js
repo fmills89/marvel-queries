@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getSavedComicIds } from "@/utils/localStorage";
+import { getSavedComicIds, removeComicId } from "@/utils/localStorage";
 
 const style = {
   container: `flex flex-wrap border m-2`,
@@ -15,7 +15,11 @@ export default function UserComics() {
     setComicData(getSavedComicIds());
   }, []);
 
-  console.log(comicData);
+  const handleDeleteComic = (comicId) => {
+    removeComicId(comicId);
+  };
+
+  // console.log(comicData);
 
   return (
     <>
@@ -26,7 +30,12 @@ export default function UserComics() {
             <div className={style.comic} key={comic.comicId}>
               <div>{comic.title}</div>
               <img className={style.img} src={comic.image} alt={comic.title} />
-              <button className={style.button}>Remove</button>
+              <button
+                className={style.button}
+                onClick={() => handleDeleteComic(comic.comicId)}
+              >
+                Remove
+              </button>
             </div>
           );
         })}
