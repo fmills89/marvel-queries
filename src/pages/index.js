@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Inter } from "next/font/google";
+import NavBar from "@/components/NavBar";
 
 import searchByCharacter from "./api/api";
 import {
@@ -14,16 +15,16 @@ const inter = Inter({
 });
 
 const style = {
-  formContainer: `rounded-lg p-12 w-full text-center bg-red-800`,
+  formContainer: `rounded-lg m-2 p-2 w-full text-center bg-red-800`,
   title: `text-3xl mb-6`,
   userSubmit: `flex flex-col items-center`,
   input: `rounded-lg p-4 mb-4 text-black`,
   button: `p-2 m-2 border rounded-lg bg-red-600`,
-  comicGrid: `p-2 m-4 flex flex-wrap justify-center`,
-  comicImageDiv: `border p-2 m-2 text-center rounded-lg bg-red-800/75`,
-  comicTitle: `border-b-4 inline pb-2 border-b-slate-800`,
+  comicGrid: `p-2 m-4 flex flex-wrap items-center`,
+  comicImageDiv: `p-2 m-2 w-80 text-center`,
+  comicTitle: `w-full h-full`,
   comicImage: `border p-2 rounded-lg scale-75 bg-slate-800/75 hover:bg-slate-800`,
-  comicButton: `border m-2 p-2 rounded-lg bg-slate-800`,
+  comicButton: `border m-2 p-2 rounded-lg bg-red-800/75`,
   comicButtons: `flex flex-col w-full items-center`,
 };
 
@@ -85,6 +86,7 @@ export default function Home() {
     <>
       <main className={`flex flex-col mx-2 items-center ${inter.className}`}>
         <div className={style.formContainer}>
+          <NavBar />
           <h1 className={style.title}>Marvel Query</h1>
           <form className={style.userSubmit} onSubmit={handleFormSubmit}>
             <input
@@ -130,8 +132,8 @@ export default function Home() {
                   {savedComicsIds?.some(
                     (savedComicId) => savedComicId.comicId === character.comicId
                   )
-                    ? "This comic has been saved already!"
-                    : "Save this comic to favorites!"}
+                    ? "Comic Saved!"
+                    : "Save to favorites"}
                 </button>
               </div>
             </div>

@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+import Image from "next/image";
 import Modal from "react-modal";
 import { RiCloseFill } from "react-icons/ri";
 import LoginForm from "./LoginForm";
 import Link from "next/link";
+import logo from "../utils/logo/logo.png";
 
 const style = {
-  navContainer: `w-auto rounded-lg flex p-2 m-2 bg-gray-600`,
-  navRight: `flex p-2 w-auto`,
+  navContainer: `rounded-lg flex w-auto h-28`,
+  navRight: `flex p-2 m-2`,
+  logo: ` h-28 w-36 rounded-lg `,
   navLeft: `flex p-2 w-full items-center`,
-  navButtons: `rounded-lg w-1/2 p-2 m-2 bg-slate-800 text-center`,
+  navButtons: `rounded-lg p-2 m-2 bg-slate-800/75 text-center`,
   modal: `m-2 border h-full flex flex-col items-center place-content-center w-auto`,
   exit: `w-96 text-black flex justify-end`,
   exitIcon: `rounded-lg h-8 w-8 bg-red-800`,
@@ -33,9 +36,10 @@ function NavBar() {
   return (
     <>
       <div className={style.navContainer}>
-        <div className={style.navLeft}>
-          <Link href="/">Marvel Comics Query</Link>
-        </div>
+        <Link href="/">
+          <Image src={logo} alt="retro marvel logo" className={style.logo} />
+        </Link>
+        <div className={style.navLeft}></div>
         <div className={style.navRight}>
           <Link href="/" className={style.navButtons}>
             Search Comics
@@ -43,9 +47,9 @@ function NavBar() {
           <Link href="/usercomics" className={style.navButtons}>
             Saved Comics
           </Link>
-          <button className={style.navButtons} onClick={openModal}>
+          {/* <button className={style.navButtons} onClick={openModal}>
             Login
-          </button>
+          </button> */}
         </div>
       </div>
       <Modal
